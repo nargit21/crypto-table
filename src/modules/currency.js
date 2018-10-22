@@ -63,6 +63,8 @@ export function loadCurrencies(page, pageSize, sort) {
         return response.json();
       })
       .then(data => dispatch(loadCurrenciesSuccess(data)))
-      .catch(error => dispatch(loadCurrenciesError(error)));
+      .catch(error => {
+        dispatch(loadCurrenciesError(error instanceof Error ? error.name : error))
+      });
   };
 }
